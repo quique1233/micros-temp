@@ -1,0 +1,15 @@
+<head>
+  <title>restSample</title>
+</head>
+
+<body>
+  <h1>Sensor de temperatura</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+ {{#each temperatures}}
+    {{temperature}}:{{date}} <br>
+ {{/each}}
+</template>

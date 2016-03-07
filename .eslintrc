@@ -1,0 +1,22 @@
+{
+  "env": {
+    "meteor": true,
+    "mocha": true,
+    "jquery": true,
+    "es6": true
+  },
+  "globals": {
+    "meteor": true,
+    "Meteor": true, 
+    "Temperatures": true
+  },
+  "rules": {
+    "quotes": 0,
+    "strict": 0,
+    "no-underscore-dangle": 0,
+    "no-unused-expressions": 0,
+    "space-after-keywords": 1,
+    "new-cap": 0,
+    "new-parens": 0
+  }
+}
