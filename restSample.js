@@ -49,7 +49,7 @@ if (Meteor.isClient) {
 
   Template.hello.helpers({
     temperatures: function () {
-      return Temperatures.find({});
+      return Temperatures.find({}, {sort: {date: -1}, limit: 10 });
     },
     date: function() {
       return moment(this.date).format('D/M/YYYY HH:mm');
