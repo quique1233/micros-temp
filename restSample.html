@@ -7,6 +7,10 @@
 </body>
 
 <template name="hello">
+  <div id="chart" style="height: 400px;">
+    <svg></svg>
+  </div>
+  
   <div class="ui relaxed divided list">
     {{#each temperatures}}
       <div class="item">
@@ -18,4 +22,5 @@
       </div>
     {{/each}}
   </div>
+
 </template>
