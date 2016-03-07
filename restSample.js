@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   Template.hello.onRendered(function () {
     this.autorun(function () {
-      let temperatures = Temperatures.find({}).fetch();
+      let temperatures = Temperatures.find({}, {sort: {date: -1}, limit: 10 }).fetch();
       let values = [];
       _.each(temperatures, function(temp) {
         let arr = [];
@@ -53,6 +53,9 @@ if (Meteor.isClient) {
     },
     date: function() {
       return moment(this.date).format('D/M/YYYY HH:mm');
+    },
+    lastRecord: function() {
+      return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].temperature;
     }
   });
 }

@@ -3,10 +3,18 @@
 </head>
 
 <body>
-  <h1 class="header">Sensor de temperatura</h1>
+  <h1 class="ui center aligned huge block header">Sensor de temperatura</h1>
 </body>
 
 <template name="hello">
+  <div class="ui center aligned statistic">
+    <div class="value">
+      <img src="/thermometer.png" class="ui circular inline image">{{lastRecord}}
+    </div>
+    <div class="label">
+      <h1>ºC</h1>
+    </div>
+  </div>
   <div class="ui horizontal segments">
     <div class="ui segment">
       <div id="chart" style="height: 400px;">
