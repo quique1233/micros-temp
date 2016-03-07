@@ -64,7 +64,7 @@ if (Meteor.isClient) {
       return this.temperature <= 10;
     },
     average: function() {
-      return this.temperature >= 10 && this.temperature <= 23;
+      return this.temperature > 10 && this.temperature <= 23;
     }
   });
 }
