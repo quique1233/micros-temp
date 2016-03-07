@@ -3,13 +3,19 @@
 </head>
 
 <body>
-  <h1>Sensor de temperatura</h1>
-
-  {{> hello}}
+  <h1 class="header">Sensor de temperatura</h1>
 </body>
 
 <template name="hello">
- {{#each temperatures}}
-    {{temperature}}:{{date}} <br>
- {{/each}}
+  <div class="ui relaxed divided list">
+    {{#each temperatures}}
+      <div class="item">
+        <i class="large sun middle aligned icon"></i>
+        <div class="content">
+          <div class="header">{{temperature}} ºC</div>
+          <div class="description">{{date}}</div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </template>
