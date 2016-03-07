@@ -56,6 +56,15 @@ if (Meteor.isClient) {
     },
     lastRecord: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].temperature;
+    },
+    hot: function() {
+      return this.temperature > 23;
+    },
+    cold: function() {
+      return this.temperature <= 10;
+    },
+    average: function() {
+      return this.temperature >= 15 && this.temperature <= 23;
     }
   });
 }

@@ -25,7 +25,15 @@
       <div class="ui relaxed divided list">
         {{#each temperatures}}
           <div class="item">
-            <i class="large sun middle aligned icon"></i>
+            {{#if cold}}
+              <img src="/weather.png" class="ui mini circular image">
+            {{/if}}
+            {{#if hot}}
+              <img src="/summer.png" class="ui mini circular image">
+            {{/if}}
+            {{#if average}}
+              <img src="/tool.png" class="ui mini circular image">
+            {{/if}}
             <div class="content">
               <div class="header">{{temperature}} ºC</div>
               <div class="description">{{date}}</div>
