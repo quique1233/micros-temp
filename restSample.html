@@ -9,10 +9,18 @@
 <template name="hello">
   <div class="ui center aligned statistic">
     <div class="value">
-      <img src="/thermometer.png" class="ui circular inline image">{{lastRecord}}
+      <img src="/thermometer.png" class="ui circular inline image">{{temperature}}
     </div>
     <div class="label">
       <h1>ºC</h1>
+    </div>
+  </div>
+  <div class="ui center aligned statistic">
+    <div class="value">
+      <img src="/thermometer.png" class="ui circular inline image">{{humidity}}
+    </div>
+    <div class="label">
+      <h1>%</h1>
     </div>
   </div>
   <div class="ui horizontal segments">

@@ -19,7 +19,10 @@ Router.route('/temperature', {where: 'server'})
         var response;
         if (this.request.body.temperature === undefined
             || this.request.body.temperature === null
-            || this.request.body.temperature === "") {
+            || this.request.body.temperature === ""
+            || this.request.body.humidity === undefined
+            || this.request.body.humidity === null
+            || this.request.body.humidity === "") {
             response = {
                 "error": true,
                 "message": "invalid data"
@@ -27,6 +30,7 @@ Router.route('/temperature', {where: 'server'})
         } else {
             Temperatures.insert({
                 temperature: this.request.body.temperature,
+                humidity: this.request.body.humidity,
                 date: new Date()
             });
             response = {

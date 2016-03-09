@@ -54,8 +54,11 @@ if (Meteor.isClient) {
     date: function() {
       return moment(this.date).format('D/M/YYYY HH:mm');
     },
-    lastRecord: function() {
+    temperature: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].temperature;
+    },
+    humidity: function() {
+      return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].humidity;
     },
     hot: function() {
       return this.temperature > 23;
