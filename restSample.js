@@ -97,6 +97,10 @@ if (Meteor.isClient) {
     },
     'click .ui.button.graph': function() {
       Template.instance().checkchart.set(true);
+    },
+    'click #export': function() {
+      // console.log('click');
+      $("#table").tableToCSV();
     }
   })
 }

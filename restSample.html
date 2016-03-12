@@ -9,9 +9,19 @@
 <template name="hello">
   <div class="ui clearing raised olive segment">
     {{#if checkchart}}
-      <div class="ui right floated olive button records">Ver tabla de registros</div>
+      <div class="ui right floated olive button records">
+        <i class="icon table"></i>
+        Ver tabla de registros
+      </div>
     {{else}}
-      <div class="ui right floated olive button graph">Ver grafica</div>
+      <div class="ui right floated olive button graph">
+        <i class="icon line chart"></i>
+        Ver grafica
+      </div>
+      <div id="export" class="ui right floated blue button" data-export="export">
+        <i class="icon download"></i>
+        Exportar a csv
+      </div>
     {{/if}}
     <div class="ui center aligned statistic">
       <div class="value">
@@ -76,7 +86,7 @@
       </div>
     </div>
   {{else}}
-    <table class="ui single line table">
+    <table id="table" class="ui single line striped olive table">
       <thead>
         <tr>
           <th>#</th>
