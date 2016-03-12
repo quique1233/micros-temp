@@ -22,7 +22,10 @@ Router.route('/temperature', {where: 'server'})
             || this.request.body.temperature === ""
             || this.request.body.humidity === undefined
             || this.request.body.humidity === null
-            || this.request.body.humidity === "") {
+            || this.request.body.humidity === ""
+            || this.request.body.photoresistor === undefined
+            || this.request.body.photoresistor === null
+            || this.request.body.photoresistor === "") {
             response = {
                 "error": true,
                 "message": "invalid data"
@@ -31,6 +34,7 @@ Router.route('/temperature', {where: 'server'})
             Temperatures.insert({
                 temperature: this.request.body.temperature,
                 humidity: this.request.body.humidity,
+                photoresistor: this.request.body.photoresistor,
                 date: new Date()
             });
             response = {

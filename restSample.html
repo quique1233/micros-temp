@@ -3,54 +3,100 @@
 </head>
 
 <body>
-  <h1 class="ui center aligned huge block header">Sensor de temperatura</h1>
+  <h1 class="ui center aligned huge block header">Microcontroladores</h1>
 </body>
 
 <template name="hello">
-  <div class="ui center aligned statistic">
-    <div class="value">
-      <img src="/thermometer.png" class="ui circular inline image">{{temperature}}
-    </div>
-    <div class="label">
-      <h1>ºC</h1>
-    </div>
-  </div>
-  <div class="ui center aligned statistic">
-    <div class="value">
-      <img src="/thermometer.png" class="ui circular inline image">{{humidity}}
-    </div>
-    <div class="label">
-      <h1>%</h1>
-    </div>
-  </div>
-  <div class="ui horizontal segments">
-    <div class="ui segment">
-      <div id="chart" style="height: 400px;">
-        <svg></svg>
+  <div class="ui clearing raised olive segment">
+    {{#if checkchart}}
+      <div class="ui right floated olive button records">Ver tabla de registros</div>
+    {{else}}
+      <div class="ui right floated olive button graph">Ver grafica</div>
+    {{/if}}
+    <div class="ui center aligned statistic">
+      <div class="value">
+        <img src="/thermometer.png" class="ui circular inline image">{{temperature}}
+      </div>
+      <div class="label">
+        <h4>temperatura ºC</h4>
       </div>
     </div>
-    <div class="ui segment">
-      <div class="ui relaxed divided list">
-        {{#each temperatures}}
-          <div class="item">
-            {{#if cold}}
-              <img src="/weather.png" class="ui mini circular image">
-            {{/if}}
-            {{#if hot}}
-              <img src="/summer.png" class="ui mini circular image">
-            {{/if}}
-            {{#if average}}
-              <img src="/tool.png" class="ui mini circular image">
-            {{/if}}
-            <div class="content">
-              <div class="header">{{temperature}} ºC</div>
-              <div class="description">{{date}}</div>
+    <div class="ui center aligned statistic">
+      <div class="value">
+        <img src="/humidity.png" class="ui circular inline image">{{humidity}}
+      </div>
+      <div class="label">
+        <h4>humedad %</h4>
+      </div>
+    </div>
+    <div class="ui center aligned statistic">
+      <div class="value">
+        <img src="/light.png" class="ui circular inline image">{{photoresistor}}
+      </div>
+      <div class="label">
+        <h4>fotoresistor</h4>
+      </div>
+    </div>
+    <div class="ui center aligned statistic">
+      <div class="value">
+        <img src="/records.png" class="ui circular inline image">{{numberOfRecords}}
+      </div>
+      <div class="label">
+        <h4># registros</h4>
+      </div>
+    </div>
+  </div>
+  {{#if checkchart}}
+    <div class="ui horizontal segments">
+      <div class="ui segment">
+        <div id="lineChart" style="height: 400px;">
+          <svg></svg>
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="ui relaxed divided list">
+          {{#each temperatures}}
+            <div class="item">
+              {{#if cold}}
+                <img src="/weather.png" class="ui mini circular image">
+              {{/if}}
+              {{#if hot}}
+                <img src="/summer.png" class="ui mini circular image">
+              {{/if}}
+              {{#if average}}
+                <img src="/tool.png" class="ui mini circular image">
+              {{/if}}
+              <div class="content">
+                <div class="header">{{temperature}} ºC</div>
+                <div class="description">{{date}}</div>
+              </div>
             </div>
-          </div>
-        {{/each}}
+          {{/each}}
+        </div>
       </div>
     </div>
-  </div>
-
-
+  {{else}}
+    <table class="ui single line table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Fecha</th>
+          <th>Temperatura</th>
+          <th>Humedad</th>
+          <th>Fotoresistor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each allRecords}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{date}}</td>
+            <td>{{temperature}}</td>
+            <td>{{humidity}}</td>
+            <td>{{photoresistor}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
 </template>

@@ -1,7 +1,14 @@
 if (Meteor.isClient) {
+  Template.hello.onCreated(function() {
+    this.checkchart = new ReactiveVar(true);
+  });
   Template.hello.onRendered(function () {
     this.autorun(function () {
-      let temperatures = Temperatures.find({}, {sort: {date: -1}, limit: 10 }).fetch();
+      Template.instance().checkchart.get();
+      let temperatures = Temperatures.find({}, {sort: {date: -1}, limit: 100 }).fetch();
+      temperatures = _.uniq(temperatures, function(temp) {
+        return Math.round(temp.temperature);
+      });
       let values = [];
       _.each(temperatures, function(temp) {
         let arr = [];
@@ -16,7 +23,7 @@ if (Meteor.isClient) {
       }];
 
       nv.addGraph(function() {
-        var chart = nv.models.cumulativeLineChart()
+        var lineChart = nv.models.cumulativeLineChart()
           .x(function(d) { return d[0] })
           .y(function(d) { return d[1] })
           .color(d3.scale.category10().range())
@@ -25,40 +32,44 @@ if (Meteor.isClient) {
           .margin({right: 30})
           ;
 
-        chart.xAxis
+        lineChart.xAxis
           .tickFormat(function(d) {
             return d3.time.format('%d/%m/%Y')(new Date(d));
           });
 
-        chart.yAxis
+        lineChart.yAxis
         .axisLabel('ºC')
         .tickFormat(d3.format('d'));
 
-        d3.select('#chart svg')
+        d3.select('#lineChart svg')
           .datum(data)
           .transition().duration(500)
-          .call(chart)
+          .call(lineChart)
           ;
 
-        nv.utils.windowResize(chart.update);
+        nv.utils.windowResize(lineChart.update);
 
-        return chart;
+        return lineChart;
       });
+
     });
   });
 
   Template.hello.helpers({
-    temperatures: function () {
-      return Temperatures.find({}, {sort: {date: -1}, limit: 10 });
-    },
-    date: function() {
-      return moment(this.date).format('D/M/YYYY HH:mm');
-    },
     temperature: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].temperature;
     },
     humidity: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].humidity;
+    },
+    photoresistor: function() {
+      return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].photoresistor;
+    },
+    temperatures: function () {
+      return Temperatures.find({}, {sort: {date: -1}, limit: 10 });
+    },
+    date: function() {
+      return moment(this.date).format('D/M/YYYY HH:mm:ss');
     },
     hot: function() {
       return this.temperature > 23;
@@ -68,6 +79,24 @@ if (Meteor.isClient) {
     },
     average: function() {
       return this.temperature > 10 && this.temperature <= 23;
+    },
+    numberOfRecords: function() {
+      return Temperatures.find({}).count();
+    },
+    checkchart: function (){
+      return Template.instance().checkchart.get();
+    },
+    allRecords: function() {
+      return Temperatures.find({});
     }
   });
+
+  Template.hello.events({
+    'click .ui.button.records': function() {
+      Template.instance().checkchart.set(false);
+    },
+    'click .ui.button.graph': function() {
+      Template.instance().checkchart.set(true);
+    }
+  })
 }
