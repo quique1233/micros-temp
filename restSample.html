@@ -16,43 +16,53 @@
     {{else}}
       <div class="ui right floated olive button graph">
         <i class="icon line chart"></i>
-        Ver grafica
+        Ver gráfica
       </div>
       <div id="export" class="ui right floated blue button" data-export="export">
         <i class="icon download"></i>
         Exportar a csv
       </div>
     {{/if}}
-    <div class="ui center aligned statistic">
-      <div class="value">
-        <img src="/thermometer.png" class="ui circular inline image">{{temperature}}
+    <div>
+      <div class="ui center aligned statistic">
+        <div class="value">
+          últimos
+        </div>
+        <div class="label">
+          registros
+        </div>
       </div>
-      <div class="label">
-        <h4>temperatura ºC</h4>
+      <div class="ui center aligned statistic">
+        <div class="value">
+          <img src="/thermometer.png" class="ui circular inline image">{{temperature}}
+        </div>
+        <div class="label">
+          <h4>temperatura ºC</h4>
+        </div>
       </div>
-    </div>
-    <div class="ui center aligned statistic">
-      <div class="value">
-        <img src="/humidity.png" class="ui circular inline image">{{humidity}}
+      <div class="ui center aligned statistic">
+        <div class="value">
+          <img src="/humidity.png" class="ui circular inline image">{{humidity}}
+        </div>
+        <div class="label">
+          <h4>humedad %</h4>
+        </div>
       </div>
-      <div class="label">
-        <h4>humedad %</h4>
+      <div class="ui center aligned statistic">
+        <div class="value">
+          <img src="/light.png" class="ui circular inline image">{{photoresistor}}
+        </div>
+        <div class="label">
+          <h4>fotoresistor</h4>
+        </div>
       </div>
-    </div>
-    <div class="ui center aligned statistic">
-      <div class="value">
-        <img src="/light.png" class="ui circular inline image">{{photoresistor}}
-      </div>
-      <div class="label">
-        <h4>fotoresistor</h4>
-      </div>
-    </div>
-    <div class="ui center aligned statistic">
-      <div class="value">
-        <img src="/records.png" class="ui circular inline image">{{numberOfRecords}}
-      </div>
-      <div class="label">
-        <h4># registros</h4>
+      <div class="ui center aligned statistic">
+        <div class="value">
+          <img src="/records.png" class="ui circular inline image">{{numberOfRecords}}
+        </div>
+        <div class="label">
+          <h4># registros</h4>
+        </div>
       </div>
     </div>
   </div>
