@@ -3,22 +3,18 @@
 </head>
 
 <body>
-  <h2 class="ui inverted center aligned block blue icon header">
+  <h3 class="ui inverted center aligned block blue icon header">
     <i class="circular settings icon"></i>
     Microcontroladores
-  </h2>
+  </h3>
 </body>
 <template name="hello">
   <div class="ui clearing raised blue segment">
     {{#if checkchart}}
-      <div class="ui right floated blue button records">
-        <i class="icon table"></i>
-        Registros
-      </div>
     {{else}}
       <div class="ui right floated blue button graph">
         <i class="icon line chart"></i>
-        Ver gráfica
+        Volver a gráficas
       </div>
       <div id="export" class="ui right floated blue button" data-export="export">
         <i class="icon file excel outline"></i>
@@ -34,7 +30,7 @@
           registros
         </div>
       </div>
-      <div class="ui center aligned statistic">
+      <div class="ui center aligned statistic temperature" style="cursor: pointer">
         <div class="value">
           <img src="/thermometer.png" class="ui circular inline image">{{currentTemperature}}
         </div>
@@ -42,7 +38,7 @@
           <h4>temperatura ºC</h4>
         </div>
       </div>
-      <div class="ui center aligned statistic">
+      <div class="ui center aligned statistic humidity" style="cursor: pointer">
         <div class="value">
           <img src="/humidity.png" class="ui circular inline image">{{currentHumidity}}
         </div>
@@ -50,7 +46,7 @@
           <h4>humedad %</h4>
         </div>
       </div>
-      <div class="ui center aligned statistic">
+      <div class="ui center aligned statistic photoresistor" style="cursor: pointer">
         <div class="value">
           <img src="/light.png" class="ui circular inline image">{{currentPhotoresistor}}
         </div>
@@ -58,7 +54,7 @@
           <h4>fotoresistor</h4>
         </div>
       </div>
-      <div class="ui center aligned statistic">
+      <div class="ui center aligned statistic allrecords" style="cursor: pointer">
         <div class="value">
           <img src="/records.png" class="ui circular inline image">{{numberOfRecords}}
         </div>
@@ -90,7 +86,10 @@
               {{/if}}
               <div class="content">
                 <div class="header">{{temperature}} ºC</div>
-                <div class="description">{{date}}</div>
+                <div class="description">{{humidity}}%<br>{{date}}</div>
+              </div>
+              <div class="right floated content">
+                {{photoresistor}} <br><b>fotoresistor</b>
               </div>
             </div>
           {{/each}}
