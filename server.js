@@ -25,7 +25,9 @@ Router.route('/temperature', {where: 'server'})
             || this.request.body.humidity === ""
             || this.request.body.photoresistor === undefined
             || this.request.body.photoresistor === null
-            || this.request.body.photoresistor === "") {
+            || this.request.body.photoresistor === ""
+            //Bad reading from pi
+            || this.request.body.temperature < -300) {
             response = {
                 "error": true,
                 "message": "invalid data"

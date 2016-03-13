@@ -15,7 +15,7 @@ if (Meteor.isClient) {
           configuration.ranges = [-10,-5, 0, 5,10,15,20,25,30,35,40];
           configuration.attr = chartFor;
           configuration.ylabel = "ºC";
-          configuration.label = "temperatura";
+          configuration.label = "temperatura ºC";
           break;
         case 'humidity':
           configuration.color = "#31B404";
@@ -26,7 +26,7 @@ if (Meteor.isClient) {
           break;
         case 'photoresistor':
           configuration.color = "#FFFF00";
-          configuration.ranges = [];
+          configuration.ranges = [0, 20000];
           configuration.attr = chartFor;
           configuration.ylabel = "fotoresistor";
           configuration.label = "fotoresistor";
@@ -45,8 +45,6 @@ if (Meteor.isClient) {
           "values": values,
           "color": configuration.color
       }];
-
-      console.log(data);
 
       nv.addGraph(function() {
         var lineChart = nv.models.lineChart()
@@ -123,7 +121,6 @@ if (Meteor.isClient) {
       Template.instance().checkchart.set(true);
     },
     'click #export': function() {
-      // console.log('click');
       $("#table").tableToCSV();
     },
     'click .humidity': function() {
