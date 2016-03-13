@@ -56,16 +56,16 @@ if (Meteor.isClient) {
   });
 
   Template.hello.helpers({
-    temperature: function() {
+    currentTemperature: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].temperature;
     },
-    humidity: function() {
+    currentHumidity: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].humidity;
     },
-    photoresistor: function() {
+    currentPhotoresistor: function() {
       return Temperatures.find({}, {sort: {date: -1}, limit: 1 }).fetch()[0].photoresistor;
     },
-    temperatures: function () {
+    lastTenTemperatures: function () {
       return Temperatures.find({}, {sort: {date: -1}, limit: 10 });
     },
     date: function() {

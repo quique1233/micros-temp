@@ -3,24 +3,26 @@
 </head>
 
 <body>
-  <h1 class="ui center aligned huge block header">Microcontroladores</h1>
+  <h2 class="ui inverted center aligned block blue icon header">
+    <i class="circular settings icon"></i>
+    Microcontroladores
+  </h2>
 </body>
-
 <template name="hello">
-  <div class="ui clearing raised olive segment">
+  <div class="ui clearing raised blue segment">
     {{#if checkchart}}
-      <div class="ui right floated olive button records">
+      <div class="ui right floated blue button records">
         <i class="icon table"></i>
-        Ver tabla de registros
+        Registros
       </div>
     {{else}}
-      <div class="ui right floated olive button graph">
+      <div class="ui right floated blue button graph">
         <i class="icon line chart"></i>
         Ver gráfica
       </div>
       <div id="export" class="ui right floated blue button" data-export="export">
-        <i class="icon download"></i>
-        Exportar a csv
+        <i class="icon file excel outline"></i>
+        Descargar
       </div>
     {{/if}}
     <div>
@@ -34,7 +36,7 @@
       </div>
       <div class="ui center aligned statistic">
         <div class="value">
-          <img src="/thermometer.png" class="ui circular inline image">{{temperature}}
+          <img src="/thermometer.png" class="ui circular inline image">{{currentTemperature}}
         </div>
         <div class="label">
           <h4>temperatura ºC</h4>
@@ -42,7 +44,7 @@
       </div>
       <div class="ui center aligned statistic">
         <div class="value">
-          <img src="/humidity.png" class="ui circular inline image">{{humidity}}
+          <img src="/humidity.png" class="ui circular inline image">{{currentHumidity}}
         </div>
         <div class="label">
           <h4>humedad %</h4>
@@ -50,7 +52,7 @@
       </div>
       <div class="ui center aligned statistic">
         <div class="value">
-          <img src="/light.png" class="ui circular inline image">{{photoresistor}}
+          <img src="/light.png" class="ui circular inline image">{{currentPhotoresistor}}
         </div>
         <div class="label">
           <h4>fotoresistor</h4>
@@ -68,15 +70,15 @@
   </div>
   {{#if checkchart}}
     <div class="ui horizontal segments">
-      <div class="ui segment">
+      <div class="ui blue segment">
         <div id="lineChart" style="height: 400px;">
           <svg></svg>
         </div>
       </div>
-      <div class="ui segment">
+      <div class="ui blue segment">
         <div class="ui relaxed divided list">
-          {{#each temperatures}}
-            <div class="item">
+          {{#each lastTenTemperatures}}
+            <div class="blue item">
               {{#if cold}}
                 <img src="/weather.png" class="ui mini circular image">
               {{/if}}
@@ -96,7 +98,7 @@
       </div>
     </div>
   {{else}}
-    <table id="table" class="ui single line striped olive table">
+    <table id="table" class="ui single line striped blue table">
       <thead>
         <tr>
           <th>#</th>
